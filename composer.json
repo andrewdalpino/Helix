@@ -1,0 +1,79 @@
+{
+    "name": "andrewdalpino/helix",
+    "type": "library",
+    "description": "A PHP library for counting short DNA sequences for use in Bioinformatics.",
+    "license": "MIT",
+    "readme": "README.md",
+    "keywords": [
+        "gene sequences", "k-mer counting", "k-mer", "bloom filter", "bioinformatics", "fasta",
+        "fastq", "illumina", "metagenomics", "computational genomics"
+    ],
+    "authors": [
+        {
+            "name": "Andrew DalPino",
+            "role": "Lead Developer",
+            "homepage": "https://github.com/andrewdalpino",
+            "email": "support@andrewdalpino.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "andrewdalpino/okbloomer": "^1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/extension-installer": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "phpbench/phpbench": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helix\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hexlix\\Benchmarks\\": "benchmarks/",
+            "Helix\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyze": "phpstan analyse -c phpstan.neon",
+        "benchmark": "phpbench run --report=aggregate",
+        "build": [
+            "@composer install",
+            "@analyze",
+            "@test",
+            "@check"
+        ],
+        "check": [
+            "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+            "php-cs-fixer fix --config=.php_cs.dist.php -v --dry-run --using-cache=no"
+        ],
+        "fix": "php-cs-fixer fix --config=.php_cs.dist.php",
+        "test": "phpunit"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/andrewdalpino"
+        }
+    ],
+    "support": {
+        "docs": "https://github.com/Scien-ide/Helix/README.md",
+        "issues": "https://github.com/Scien-ide/Helix/issues",
+        "source": "https://github.com/Scien-ide/Helix",
+        "email": "support@andrewdalpino.com"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
